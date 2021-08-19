@@ -1,0 +1,251 @@
+1. 설치 
+https://www.mysql.com
+
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin
+환경변수
+
+SQL - (관계형)데이터베이스 전용 언어
+Structured Query Language 
+
+SQL언어 - 기능에따라서 분류
+데이터 정의어(DDL - Data Definition Language) 
+		- 테이블(릴레이션), 데이터베이스 등 구조를 정의하는 언어 
+		(CREATE - 데이터베이스, 테이블 등을 생성, ALTER - 테이블 수정, DROP - 데이터베이스 삭제, 테이블을 삭제 )
+
+데이터 조작어(DML - Data Manupulation Language)
+	데이터 검색, 추가, 수정, 삭제
+	--> 검색 O (관계 대수) -> SELECT - 질의어(query)
+	
+데이터 제어어(DCL - Data Control Language)
+	- 사용자 권한(GRANT, REVOKE)
+	- TCL 
+	
+SQL문은 실행 순서가 없는 비절차적 언어
+SELECT phone  3 (프로젝션)
+FROM Customer - 1
+WHERE name='김연아' - 2(셀렉션)
+
+
+
+데이터 조작어(DML) - 검색
+SELECT - 질의어(query)
+
+
+SELECT bookname, publisher  - 속성 이름... 
+FROM BooK  - 테이블 
+WHERE price >= 10000; - 검색 조건 
+
+
+SELECT [ALL | DISTINCT - 중복 제거 ] 속성이름(들)
+FROM 테이블 이름(들) 
+WHERE 검색조건(들)
+GROUP BY 속성이름
+HAVING 검색조건(들)
+ORDER BY 속성이름 ASC(오름차순) | DESC(내림차순) - 정렬 
+
+* -> 모든 속성
+AS -> Alias
+
+FROM 
+	테이블 이름 [AS ]
+	INNER JOIN | LEFT [OUTER] JOIN | RIGHT [OUTER] JOIN | FULL [OUTER] JOIN 
+	(동등 조인) - ASCII 표준 
+	[ON 검색조건 - 공통 속성]
+	
+	[UNION  - 합집합(중복 투플은 X) | UNION ALL - 합집합(중복 투플 O)]
+
+참고)
+DESCRIBE 테이블명 | DESC 테이블
+관례적 문법 관련 -> 대문자
+ 
+ 3.1 모든 도서의 이름과 가격을 검색 하세요
+ 
+ 3.2 모든 도서의 도서번호, 도서이름, 출판사, 가격
+ 
+ 3.3 도서 테이블에 있는 모든 출판사를 검색하시오
+
+WHERE 조건 
+- 비교 
+	1) =, <, > ....
+- 범위
+	BETWEEN   -- price BETWEEN 10000 AND 20000  --> price >= 10000 AND price <= 20000
+- 집합 
+	IN  -> 속성 IN ('값1', '값2' ... ) -> 속성에 값1, 값2가 포함되는 조건 
+	NOT IN -> 포함이 되지 않는 조건
+- 패턴 
+	LIKE  -- company_addr1 LIKE '서울 특별시%'
+- NULL -> 값이 없는 상태 (  빈값 -> ''는 NULL이 아님 )
+	IS NULL  -> NULL 인 경우 
+	IS NOT NULL -> NULL이 아닌 경우 
+-복합조건 
+	AND, OR, NOT 
+	
+3.4 -가격이 20,000원 미만인 도서를 검색하세요
+
+3.5. 출판사가 '굿스포츠' 혹은 '대한미디어'인 도서를 검색하시오.
+IN 
+
+LIKE -> 단어가 포함이 되어 있는지 여부
+LIKE '단어' -> 단어와 일치되는 패턴
+LIKE '단어%' -> 단어로 시작하는 패턴
+LIKE '%단어' -> 단어로 끝나는 패턴
+LIKE '%단어%' -> 단어가 포함되는 패턴
+
+3.7. '축구의 역사'를 출간한 출판사를 검색하시오
+
+3.8 도서이름에 '축구'가 포함된 출판사를 검색하시오.
+
+와일드 문자(_) - 특정 위치에 한 문자만 대신
+3.9 도서이름의 왼쪽 두번째 위치에 '구'라는 문자열을 갖는 도서를 검색하시오
+
+표3-6
++ 문자열 연결
+[] - [0-5]% -> 0~5사이 숫자로 시작하는 문자열
+[^]  [^0-9]%
+_
+
+복합조건(AND, OR, NOT )
+
+3.10 축구에 관한 도서 중 가격이 20,000원 이상인 도서를 검색하시오
+
+3.11 출판사가 '굿스포츠' 혹은 '대한미디어'인 도서를 검색하시오
+
+ORDER BY 속성 정렬 ASC|DESC, 속성 ... 속성 ... 
+
+3.12. 도서를 이름 순으로 검색하시오
+
+3.13 도서를 가격순으로 검색하고, 가격이 같으면 이름순으로 검색하시오
+
+GROUP BY 
+집계를 하기 위해서는 GROUP BY문을 사용하고, 구체적인 집계 내용은 집계 함수를 사용한다.
+(지정된 속성의 값을 공통 값으로 묶어서 그룹화)
+
+3.16 - 고객이 주문한 도서의 총 판매액을 구하시오
+SUM() - 합계
+AVG() - 평균
+MIN() -> 초소값
+MAX() -> 최대값 
+COUNT(*) -> 투플의 갯수(행의 갯수)
+
+3-17.고객이 주문한 도서의 총 판매액, 평균값, 최저가, 최고가
+                                       SUM()     AVG()   MIN()   MAX()
+									   
+
+COUNT(*) - 전체 투플 갯수 
+COUNT(publisher) - 출판사의 수
+COUNT(DISTINCT publisher) - 중복되지 않는 출판사의 실제 갯수
+
+GROUP BY 
+ - 속성값이 같은 값끼리 그룹을 만들어 주는 절 
+ 
+3-19 - 고객별로 주문한 도서의 총 수량, 총 판매액을 구하시오
+                                           (COUNT()) (SUM())
+ 
+HAVING
+	- GROUP BY 절의 결과 나타나는 그룹을 제한하는 역할을 한다
+		1) 반드시 GROUP BY 절과 같이 작성 
+		2) WHERE 절 보다 뒤에
+		3) 집계 함수가 와야 한다(SUM, AVG, MIN, MAX, COUNT)
+	
+3-20 가격이 8,000원 이상인 도서를 구매한 고객에 대하여 고객별 주문 도서의 총 수량을 구하시오. 
+         (WHERE)                                                          GROUP BY          COUNT(*)
+   단, 두권 이상 구매한 고객만 구하시오
+  
+        HAVING -> COUNT(*) > 2
+
+비 절차적 언어
+
+두개 이상의 테이블에서 SQL 질의 
+1. 조인 - 2개 이상의 테이블을 합칠때 
+   카티전 프로덕트(X) + 셀렉션 + 프로젝션
+
+3-21 
+3-22 - 고객과 고객의 주문에 관한 데이터를 고객별로 정렬하여 보세요.
+ORDER BY custid
+
+3-24 - 고객별로 주문한 고객별 모든 도서의 총 판매액을 구하고, 고객별로 정렬하시오
+          (동등 조인)         (GROUP BY custid -- SUM(saleprice))    ORDER BY name
+
+
+3-25 - 고객의 이름과 고객이 주문한 도서의 이름을 구하시오
+         고객, 주문, 도서
+		 (custid)  (bookid)
+		 
+		 SELECT c.name, b.bookname 
+		FROM Customer c, Orders o, Book b
+		WHERE c.custid = o.custid AND o.bookid = b.bookid;
+
+		SELECT c.name, b.bookname
+		FROM Customer c 
+			INNER JOIN Orders o ON c.custid = o.custid
+			INNER JOIN Book b ON o.bookid = b.bookid;
+
+
+  참고) 셀프조인
+    - 하나의 테이블(자신)을 대상으로 조인하는 것을 말한다
+	- 반드시 별칭이 필요하다
+ 
+  3-26 가격이 20,000원인 도서를 주문한 고객의 이름과 도서의 이름을 구하시오
+     (고객, 주문, 도서), (도서.price > 20000)   고객.이름, 도서.이름
+ 
+  외부조인
+  3-27 - 도서를 구매하지 않은 고객을 포함하여 고객의 이름과 고객이 주문한 도서의 판매가격을 구하시오
+  
+  
+2. 부속질의
+	- SQL 문 내에 또 다른 SQL 문
+	
+	3-28 가장 비싼 도서의 이름을 보이시오
+	1) 가장 비싼 도서
+		SELECT MAX(price) FROM Book
+		
+	2) 가장 비싼 도서 금액에 매칭이되는 투플 조회
+	   SELECT bookname FROM Book WHERE price = '가장 비싼 금액'
+	 
+	 WHERE 절에 또다른 테이블의 결과를 이용하기위해 SELECT문을 괄호()로 묶는것
+	 SELECT bookname, price
+	 FROM Book 
+     WHERE price = (SELECT MAX(price) FROM Book);
+	
+	참고) LIMIT - > SQL 레코드 수
+	LIMIT 시작행, 조회할 행수
+	LIMIT 조회할 행수; // 시작행이 0 
+	   
+	부속질의 결과 값이 1개 -> 동등 비교(=)
+	
+	3-29 
+	부속질의 결과 값이 여러개 -> IN
+    주문을 한 고객 
+	SELECT * 
+	FROM Customer
+	WHERE custid IN (SELECT custid FROM Orders);	
+	
+	중첩 -> 여러 부속질의
+	3-30 대한 미디어에서 출판한 도서를 구매한 고객의 이름 보이시오
+	    (Customer, Orders - custid )   (Orders = bookid = Book - publisher='대한미디어') 
+		
+		 
+	3-31 출판사별로 출판사의 평균 도서 가격보다 비싼 도서를 구매하시오
+	1) 출판사별 평균 도서 가격
+	2) 출판사별로 평균 도서 가격보다 비싼 책
+	
+
+ 집합연산 - 같은 속성, 같은 순서, 같은 도메인(합병가능성)
+   합집합 - UNION  
+   교집합 - IN 
+   차집합 - NOT IN
+ 
+ 3-32 대한민국에서 거주하는 고객의 이름과 도서를 주문한 이름을 보이시오
+ 합집합 - UNION
+		  - 중복은 제거
+		  
+합집합 - UNION ALL 
+		  - 중복 결과를 포함
+		  
+		  
+EXISTS 
+        부속질의 결과가 있는지 체크
+
+3-33 주문이 있는 고객의 이름과 주소를 보이시오
+	  

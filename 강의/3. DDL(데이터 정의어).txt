@@ -1,0 +1,143 @@
+데이터 정의어(DDL - Data Definition Language)
+  - 데이터를 저장할 테이블의 구조
+  - 데이터 베이스 생성, 삭제
+  
+  CREATE 문
+	CREATE DATABASE 데이터베이스명;
+	
+	CREATE TABLE 문법
+	
+	CREATE TABLE 테이블 명 (
+		속성명 자료형 제약조건,
+		속성명 자료형 제약조건
+		....
+		
+		속성명 자료형 제약조건
+	);
+	
+
+	CREATE TABLE 테이블명 (
+		속성명 데이터 타입(INTEGER, FLOAT, CHAR, VARCHAR, TEXT, ...., DATE, DATETIME... ) 
+		[NULL | NOT NULL | UNIQUE | DEFAULT | CHECK | AUTO_INCREMENT ]
+		[
+			PRIMARY KEY 속성명(들) - 기본키
+			| FOREIGN KEY 속성명(참조하는) REFERRENCES 테이블(속성명 - 기본키(참조되는)) 
+			  [ON DELETE {CASCADE | SET NULL}]
+			  -> ON DELETE가 지정 X -> RESTRICT(NO ACTION) -> 기본키가 참조하는 외래키 데이터가 있으면 삭제 중단
+			  -> ON DELETE CASCADE;  -> 기본키가 있는 투플이 삭제가  되면 참조하고 있는 외래키에 해당 하는 투플 역시 자동 삭제
+			  -> ON DELETE SET NULL 
+			
+			(참조 무결성 제약조건)
+			- 
+		]
+	);
+	
+	
+	자료형 
+	CHAR(숫자) -> 숫자만큼 공간을 생성 
+	VARCHAR(숫자) - 숫자의 최대 공간만큼만 생성
+						 - 입력되는 데이터의 용량에 따라서 자동으로 공간이 조정
+	
+	
+	제약조건 
+	NOT NULL - 값에서 NULL을 허용 X -> 반드시 데이터가 입력 되어야 한다(필수 속성)
+	UNIQUE - 유일한 값(중복이 안되는 값)
+	
+	아이디 - 유일하게 1개만 존재 -> UNQUIE 
+	
+	DEFAULT - 기본값
+	
+	CHECK 조건식  예) CHECK age >= 18 - age 속성 값인 18세 이상인 데이터만 입력
+	
+	AUTO_INCREMENT  - PRIMARY KEY로 설정한 정수형 속성을 자동 증감하게 만드는 제약조건
+	
+
+  
+  주문상품 테이블 
+  주문번호, 주문상품, .... 
+  
+  1 - 1000
+  1 - 1001
+  
+  2 - 1000
+  2 - 1001
+  
+  
+  NOT NULL - 필수 값 
+  UNIQUE - 중복이 아닌 값 
+  DEFAULT - 기본값 
+  CHECK - 조건에 따른 체크 
+  
+  3-35 NewCustomer 
+  
+  3-36 NewOrders 
+	custid(고객번호) INTEGER NOT NULL, 외래키(NewCustomer.custid) - 연쇄 삭제)
+  
+  
+  표3-10 데이터 타입 종류
+  숫자 
+	- 정수 
+		INTEGER(INT)
+		 - INT 
+		 - TINYINT 
+		 - SMALLINT
+		 - MEDIUMINT 
+		 - BIGINT
+		 
+	- 실수  
+		- FLOAT (32bit)
+		- DOUBLE (64bit)
+		
+  문자 
+	- CHAR(숫자)
+	- VARCHAR(숫자) - 유동적으로 메모리 공간이 변경
+  
+  날짜 
+	- DATE 
+	- DATETIME
+	
+ 
+  기타
+	ENUM -> ENUMERATION 열거
+				("A", "B", C")
+	SET -> 
+	
+ALTER - TABLE 변경
+ ALTER TABLE 테이블명
+		[ADD 속성명 데이터타입 제약조건] - 테이블에 속성 추가 
+		[DROP COLUMN 속성이름] - 테이블에서 속성 제거
+		[ALTER COLUMN 속성명 데이터타입 제약조건 ]
+		[CHANGE 기존 속성명 새로운 속성명 자료형 제약조건]
+		|AFTER 속성명] -> 속성명 뒤에 테이블 속성 추가,변경... 
+		[FIRST 속성명] -> 테이블의 가장 첫 속성명으로 추가
+		[ADD PRIMARY KEY(속성명(들))] 
+		[ADD | DROP 제약조건]
+		
+3-37 NewBook 테이블에 VARCHAR(13)의 자료형을 가진 isbn 속성을 추가하시오
+   ALTER TABLE 테이블 ADD isbn VARCHAR(13)
+
+3-38 NewBook 테이블의 isbn 속성의 데이터 타입을 INTEGER 형으로 변경 
+   ALTER TABLE 테이블 MODIFY isbn INTEGER;
+   ALTER TABLE 테이블 ALTER COLUMN isbn INTEGER;
+   ALTER TABLE 테이블 MODIFY COLUMN isbn INTEGER;
+	 
+3-39 NewBook 테이블의 isbn 속성을 삭제하시오
+   ALTER TABLE 테이블 DROP COLUMN 속성명;
+   
+참고) CHANGE - 속성명 변경
+	ALTER TABLE 테이블 CHANGE isbn isnb2 INTEGER;
+
+3-40 NewBook 테이블의 bookid 속성에 NOT NULL 제약조건을 적용하시오
+  ALTER TABLE 테이블명 MODIFY bookid INTEGER NOT NULL;
+
+3-41 NewBook 테이블의 bookid 속성을 기본키로 변경하시오.
+  ALTER TABLE 테이블명 ADD PRIMARY KEY(bookid);
+
+
+ DROP  - TABLE, DATABASE 삭제
+  
+ DROP TABLE 테이블명;
+ 
+ DROP DATABASE 데이터베이스명;
+ 
+ 
