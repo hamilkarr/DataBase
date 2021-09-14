@@ -1,0 +1,23 @@
+1. 데이터 조작어 - 검색(관계대수)
+  SELECT [ALL | DISTINCT] 속성이름(들 - 콤마(,))
+         [AS 속성이름 별칭]
+  FROM 테이블이름(들) [AS 테이블 이름 별칭]
+      [INNER JOIN | LEFT [OUTER] JOIN | RIGHT [OUTER] JOIN]
+      테이블명 ON 검색조건(JOIN을 할 공통 속성)
+  WHERE <검색조건>
+      | GROUP BY 속성이름
+      | HAVING <검색조건>
+      | UNION - 합집합 (중복X) | UNION ALL 중복 O
+      | ORDER BY 속성이름 [ASC | DESC]
+
+  DISTINCT - 유일한 속성 값 -> 중복 없는 속성 값
+  GROUP BY - 속성의 공통 값으로 묶어주는 기능 -> 통계 + 집계함수: AVG(),SUM(),MIN(),MAX,COUNT()...
+  HAVING -> 집계함수의 검색조건
+  ORDER BY - 속성값 정렬 :오름차순(기본값)-ASC, 내림차순-DESC
+
+  WHERE < 검색조건>
+    - 복합조건 : AND, OR, NOT -> 논리 연산자
+    - 연산자의 우선순위
+      관계(비교) 연산자 >>>>> 논리 연산자
+      예 ) PRICE > 1000  AND  PRICE < 2000
+    

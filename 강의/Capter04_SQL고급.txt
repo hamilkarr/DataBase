@@ -58,3 +58,37 @@
         Orders - Group By custid
         AVG
     4.4
+
+2. 부속질의
+  하나의 SQL 문 안에 다른 SQL 문이 중첩된 질의
+
+  1) 스칼라 부속질의 - SELECT 절
+    UPDATE 테이블명
+      SET
+        속성 =  값
+
+    스칼라 -> 단일값 (P226)
+    4-12. 고객별 판매액(고객이름, 고객 판매액)
+      GROUP BY custid
+      1) 고객별 판매액
+      2) 고객 이름
+
+    4-13. Orders -> bname(VARCHAR(40)) -> 주문한 책 이름
+          Orders - bookid -> Bool, bookname
+  
+  2) 인라인뷰 - FROM 절 - 가상의 뷰(테이블)
+    4-14. 고객번호가 2 이하인 고객의 판매액
+          (고객이름과 고객별 판매액)
+
+  3) 중첩질의 - WHERE 절 - 상관부속질의, 비상관 부속질의
+  230, 표 4-7 All -> 최대값, SOME(ANY) -> 최소값
+  4-15, 4-16
+  
+  IN(교집합), NOT IN(차집합) -> 다중 값
+  4-17. 대한민국 거주 고객, 판매한 도서의 총 판매액
+    (Customer.address)
+
+3. 뷰
+  Customer,Orders,Book
+  1) 편의성 및 재활용성
+  2) 보안성

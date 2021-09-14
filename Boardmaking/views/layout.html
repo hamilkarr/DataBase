@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  {% block style %}
+  {% endblock %}
+  {% if addCss.length > 0 %}
+    {% for fileName in addcss %}
+      <link rel="stylesheet" href="/css/{{ fileName }}.css">
+    {% endfor %}
+  {% endif %}
+  <script src="/js/common.js"></script>
+  {% block script %}  
+  {% endblock %}
+  {% if addScript.length > 0 %}
+  {% for script in addScript %}
+    <script src="/js/{{ script }}.js"></script>
+  {% endfor %}
+  {% endif %}
+</head>
+<body>
+  
+</body>
+</html>

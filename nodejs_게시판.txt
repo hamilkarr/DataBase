@@ -1,0 +1,53 @@
+1. npm init - package.json
+  
+  starts - 사용자 정의 명령어
+         - 개발중 nodemon
+         - 서비스중 pm2, NODE_ENV : 환경변수 production
+          (로그기록, DB 계정 설정)
+          cross-env NODE_ENV=production PORT=443
+
+2. 모듈(패키지)
+  express morgan dotenv cookie-parser express-session nunjucks pm2 cross-env winston
+
+3. app.js
+
+  웹
+  Request <-------> Response
+  (요청)            (응답)
+  사용자쪽에서      서버쪽에서
+  서버로 요청       자원을 출력
+  브라우저
+  
+  Request Header
+    language - en     영문 페이지
+    language - ko     한국어 페이지
+
+  요청 URL
+  환경에 대한 정보
+  (브라우저가 실행되고 있는)
+  - 브라우저 정보, 언어, IP
+
+  요청방식
+  요청데이터(사용자가 입력한 데이터)
+  쿠키
+
+  Request - 미들웨어 - Response
+  
+  app.get("/", function(req,res,next) {
+    res.render
+    res.send
+  });
+
+  요청 -> 미들웨어 처리 -> 응답(출력) -> 종료
+              next()              next()
+  요청 -> 미들웨어1 -> 미들웨어2 -> 미들웨
+
+
+  요청 방식에 대한 부분
+
+  GET - 브라우저 주소창에 노출되는 부분
+
+
+10. 라우터
+  메인페이지 라우터 - index.js
+  게시판 라우터 - board.js
