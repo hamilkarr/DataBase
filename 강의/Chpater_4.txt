@@ -1,0 +1,301 @@
+1. 다음 내장 함수의 결과를 적으시오.
+
+ABS(-15) : 15
+
+CELL(15.7) : 16
+
+COS(3.14159) : -0.99999999....
+
+FLOOR(15.7) : 15
+
+LOG(10,100) : 2
+
+MOD(11,4) : 3
+
+POWER(3,2) : 9
+
+ROUND(15.7) : 16
+
+SIGN(-15) : -1
+
+TRUNC(15.7) : 15
+
+CHR(67) : C
+
+CONCAT('HAPPY','Birthday') : HAPPY Birthday
+
+LOWER('Birthday') : birthday
+
+LPAD('Page 1',15,'*.') : *.*.*.*.*Page 1
+
+LTRIM('Page 1','ae') : Page 1
+
+REPLACE('JACK','J','BL') : BLACK
+
+RPAD('Page 1',15,'*.') : Page 1*.*.*.*.*
+
+RTRIM('Page 1','ae') : Page 1
+
+SUBSTR('ABCDEFG',3,4) : CDEF
+
+TRIM(LEADING 0 FROM '00AA00') : AA00
+
+UPPER('Birthday') : BIRTHDAY
+
+ASCII('A') : 65
+
+INSTR('CORPORATE FLOOR', 'OR',3,2) : 14
+
+LENGTH('Birthday') : 8
+
+ADD_MONTHS('14/05/21',1) : 14/06/21
+
+LAST_DAY(STSDATE) : 18/11/30
+
+NEXT_DAY(SYSDATE,1) : 18/11/25
+
+ROUND(SYSDATE) : 18/11/22
+
+SYSDATE : 18/11/21
+
+TO_CHAR(SYSDATE) : 18/11/21
+
+TO_CHAR(123) : 123
+
+TO_DATE('12 05 2014', 'DD MM YYYY') : 14/05/12
+
+TO_NUMBER('12.3') : 12/3
+
+DECODE(1,1,'aa','bb') : aa
+
+NULLIF(123,345) : 123
+
+NVL(NULL,123) : 123
+
+
+2.
+
+(1) NULL값은 출력이 되지 않는다.
+
+(2) NULL값이 나오는 값을NVL 명령어0으로 대체한다.
+
+(3) NULL값도 검색 조건이 된다. price가NULL값인 것을 찾을 수 있다.
+
+(4) price가 빈 공간은NULL값으로 취급하지 않는다. 잘못된 명령어이다.
+
+(5) 모든price값에100을 더해도NULL값에는 더해지지 않는다.
+
+(6) 출력할 값이 없으면NULL값으로 대체되어 출력된다.
+
+(7) NULL값은 없는 존재로 확인되어 카운트에 포함되지 않는다.
+
+(8) NULL값은 계산에 포함 되지 않는다. NULL값이 있으면 그 값을 제외하고 정상적으로 작동한다.
+
+
+3.
+
+(1)
+
+BOOKID BOOKNAME PUBLISHER PRICE
+
+1 축구의 역사 굿스포츠 7000
+
+2 축구 아는 여자나무수 13000
+
+3 축구의 이해 대한미디어 22000
+
+4 골프 바이블 대한미디어 35000
+
+5 피겨 교본 굿스포츠 8000
+
+6 역도 단계별기술 굿스포츠 6000
+
+7 야구의 추억 이상미디어 20000
+
+8 야구를 부탁해이상미디어 13000
+
+9 올림픽 이야기삼성당 7500
+
+10 Olympic Champions Pearson 13000
+
+(2)
+
+BOOKID BOOKNAME PUBLISHER PRICE
+
+1 축구의 역사 굿스포츠 7000
+
+2 축구 아는 여자나무수 13000
+
+3 축구의 이해 대한미디어 22000
+
+4 골프 바이블 대한미디어 35000
+
+5 피겨 교본 굿스포츠 8000
+
+(3)
+
+BOOKID BOOKNAME PUBLISHER PRICE
+
+1 축구의 역사 굿스포츠 7000
+
+5 피겨 교본 굿스포츠 8000
+
+2 축구 아는 여자나무수 13000
+
+3 축구의 이해 대한미디어 22000
+
+4 골프 바이블 대한미디어 35000
+
+(4)
+
+BOOKID BOOKNAME PUBLISHER PRICE
+
+6 역도 단계별기술 굿스포츠 6000
+
+1 축구의 역사 굿스포츠 7000
+
+9 올림픽 이야기삼성당 7500
+
+5 피겨 교본 굿스포츠 8000
+
+2 축구 아는 여자나무수 13000
+
+(5)
+
+BOOKID BOOKNAME PUBLISHER PRICE
+
+1 축구의 역사 굿스포츠 7000
+
+5 피겨 교본 굿스포츠 8000
+
+2 축구 아는 여자나무수 13000
+
+3 축구의 이해 대한미디어 22000
+
+4 골프 바이블 대한미디어 35000
+
+(6)
+
+BOOKID BOOKNAME PUBLISHER PRICE
+
+1 축구의 역사 굿스포츠 7000
+
+5 피겨 교본 굿스포츠 8000
+
+2 축구 아는 여자나무수 13000
+
+3 축구의 이해 대한미디어 22000
+
+4 골프 바이블 대한미디어 35000
+
+
+4.
+
+(1) 고객ID 와 주소와 총 구매액을 출력해준다.
+
+손님 테이블에 아이디와 주문 테이블에 아이디가 같으면 주소를 출력하고, 총 구매액을 출력해준다.
+
+(2) 손님 이름과 평균 구매액을 출력해준다.
+
+주문테이블에서 고객ID를 순차적으로 출력과 평균 주문액을 나타낸 테이블OD를 만들고, 고객 테이블CS에서CS.고객 아이디와OD.고객 아이디가 같은 것을 출력한다,
+
+(3) 주문 테이블에서 총 구매액(TOTAL)을 고객ID가 3이하이고, 고객테이블과 주문테이블에서ID가 같다는 조건하에 화면에 출력한다.
+
+
+5.
+
+view의 장점
+
+- 편리성: 미리 정의된 뷰를 일반 테이블처럼 사용 할 수 있다.
+
+- 재사용성: 자주 사용되는 질의를 뷰로 미리 정리해 놓는다.
+
+- 보안성: 각 사용자 별로 필요한 데이터만 선별하여 보여줄 수 있다.
+
+view의 단점
+
+- SELECT문을 제외한 일부 물리적인 테이블의 갱신 작업을 수행하는데 제약이 있다. DML 작업은 수행되지 않는 경우도 있다.
+
+
+6.
+
+(1)
+
+CREATE VIEW highorders (bookid,bookname,name,publisher,saleprice)
+
+AS SELECT od.bookid,bk.bookname,cs.name,bk.publisher,od.saleprice
+
+FROM Orders od, Customer cs, Book bk
+
+WHERE cs.custid=od.custid AND od.bookid=bk.bookid AND saleprice >= 20000;
+
+(2)
+
+SELECT bookname, name
+
+FROM highorders;
+
+(3)
+
+CREATE OR REPLACE VIEW highorders
+
+AS SELECT od.bookid, bk.bookname, cs.name, bk.publisher
+
+FROM Customer cs, Orders od, Book bk
+
+WHERE cs.custid=od.custid AND od.bookid= bk.bookid AND saleprice>= 20000;
+
+
+7.
+
+(1)
+
+SELECT ename
+
+FROM Emp
+
+WHERE mgr IS NULL;
+
+(2)
+
+SELECT ename, (SELECT dname
+
+FROM Dept de
+
+WHERE de.deptno=ep.deptno) "dname"
+
+FROM Emp ep;
+
+(3)
+
+SELECT ename
+
+FROM (SELECT deptno, loc
+
+FROM Dept
+
+WHERE loc='CHICAGO') dp, Emp ep
+
+WHERE dp.deptno=ep.deptno;
+
+(4)
+
+SELECT ename, sal
+
+FROM Emp
+
+WHERE sal > (SELECT AVG(sal)
+
+FROM Emp);
+
+(5)
+
+SELECT ename
+
+FROM Emp ep1
+
+WHERE ep1.sal > (SELECT AVG(sal)
+
+FROM Emp ep2
+
+WHERE ep1.deptno=ep2.deptno);

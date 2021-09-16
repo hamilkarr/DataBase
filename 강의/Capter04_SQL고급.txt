@@ -9,7 +9,7 @@
     SQRT(숫자) : 제곱근
     SIGN(숫자) : 양수(1),음수(-1),0
   
-  2)문자함수
+  2)문자함수 - P 215
     CONCAT(S1,S2) : 두 문자열을 연결
     LOWER(S) : 대문자를 소문자로
     UPPER(S) : 소문자를 대문자로
@@ -17,34 +17,40 @@
     RPAD(S,N,C) : 대상 문자열의 오른쪽부터 지정한 자리수까지 지정한 문자로 채움
     REPLACE(S1,S2,S3) : 대상 문자열의 지정한 문자를 원하는 문자로 변경
     SUBSTR(S,N,C) : 대상 문자열의 지정된 자리에서부터 지정된 길이만큼 잘라서 반환
+        SELECT     SUBSTR(NAME, 1, 1) 성씨, count(*) 인원수
+        FROM    CUSTOMEr
+        GROUP BY SUBSTR(name, 1, 1);
     TRIM(C FRIN S) : 대상 문자열의 양쪽에서 지정된 문자를 삭제
 
     ASCII(C): 문자의 아스키 코드
     LENGTH(S): 대상 문자열의 BYTE 반환. 알파벳은 1BYTE, 한글은 3BYTE.
     CHAR_LENGTH(S) : 문자열의 길이
   
-  3)날짜, 시간 함수
-    STR_TO_DATE(string,format) : 문자열 날짜 -> DATE 형 날짜
-    DATE_FORMAT(date,format) : DATE형 날짜 -> 문자열 날짜
+  3)날짜, 시간 함수 - P 218
+    STR_TO_DATE -> 문자열(VARCHAR,CHAR) -> 날짜(DATE)
+    
+    DATE_FORMAT -> 날짜(DATE,DATETIME) -> 문자열(특정 포멧으로)
+      2021-09-16 -> 2021/09/16
+    
     ADDDATE(date,interval) : 날짜에 지정된 기간만큼 더하거나 뺄때 
       interval 10 day -> date 보다 10일 뒤
       interval -10 day -> date 보다 10일 앞
    
-    DATE(date) -> DATETIME(날짜 시간) -> DATE(날짜)
+    DATE(date) -> DATETIME(날짜 시간) -> DATE(날짜 + 시간 -> 날짜)
       SELECT 
         DATE(SYSDATE()) '현재날짜',
         DATE(ADDDATE(SYSDATE(), INTERVAL - 10 DAY)) '10일 전',
         DATE(ADDDATE(SYSDATE(), INTERVAL 10 DAY)) '10일 후';
 
     DATEDIFF(date1,date2) -> date1 ,date2 의 날짜 간격
-    SYSDATE -> DBMS 시스템 현제 시간
+    SYSDATE() -> DBMS 시스템 현재 날짜시간
     NOW
 
-    format 주요 지정자 - P219
+    format 주요 지정자 - P 219
     %Y -> 년도 (2021)
     %y -> 년도(21)
-    %m -> 월
-    %d -> 일
+    %m -> 09월
+    %d -> 16일
 
     %H -> 24시 기준 시간
     %h -> 12시 기준 시간
@@ -52,6 +58,27 @@
     %s -> 초
 
     %w -> 요일(0~6)
+
+    P218
+      select date_format(orderdate, '%y.%m.%d') orderdate
+      from orders;
+
+    P221
+    NULL -  값이 입력되지 않은 형태
+         -> 빈값, 0 둘다 아님.
+         -> 속성 = NULL (X - 비교연산)
+         -> IS NULL -> NULL 인경우
+         -> IS NOT NULL -> NULL 이 아닌 경우
+
+         NULL -> 연산 불가
+         SUM,AVG -> NULL
+         COUNT() -> 0
+
+    P223
+    IFNULL 
+
+    변수
+    SET @변수명: =값; 
 
     4-3. 
       1) 고객별 평균 주문 금액
