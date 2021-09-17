@@ -147,3 +147,31 @@ DELETE FROM Book WHERE publisher='삼성당';
 UPDATE Book SET publisher='대한출판사' WHERE publisher like '대한미디어';
 
 SELECT * FROM BOOK;
+
+번외
+
+3-27 도서를 구매하지 않은 고객을 포함하여 고객의 이름과 고객이 주문한 도서의 판매가격을 구하시오.
+SELECT 
+    customer.NAME, saleprice
+FROM
+    customer
+        LEFT OUTER JOIN
+			    orders ON customer.custid = orders.custid
+
+3-32 대한민국에서 거주하는 고객의 이름과 도서를 주문한 고객의 이름을 보이시오
+select name
+from customer
+where address like "대한민국%"
+union
+select name
+from customer
+where custid in (select custid from orders)
+
+3-34 다음과 같은 속성을 지닌 newbook3 테이블을 생성하시오.
+create table newbook3 (
+    bookid integer,
+    bookname varchar(30)  not null,
+    publisher varchar(30) not null unique,
+    price integer default 10000 chech(price >=1000),
+    primary key (bookname,publisher),
+    foreign key(custid) references newcustomer(custid) on DELETE cascade)

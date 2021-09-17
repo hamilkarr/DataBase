@@ -2,12 +2,19 @@
   1) 숫자함수
     ABS(숫자) : 절대값
     CEIL(숫자) :  숫자보다 크거나 같은 최소의 정수
+      SELECT CEIL((20.574*100)/100);
     FLOOR(숫자) : 숫자보다 작거나 같은 최소의 정수
     ROUND(숫자,m) : 숫자의 반올림, M은 반올림 기준 자릿수
+      SELECT ROUND(4.875,1);
     LOG(N,숫자) :  숫자의 자연로그 값을 반환
     POWER(숫자,N) : 숫자의 N 제곱 값을 계산
     SQRT(숫자) : 제곱근
     SIGN(숫자) : 양수(1),음수(-1),0
+
+    4-3 고객별 평균 주문 금액을 백원 단위로 반올림한 값을 구하시오
+      SELECT CUSTID, ROUND(SUM(SALEPRICE)/COUNT(*),-2) "평균금액"
+      FROM ORDERS
+      GROUP BY CUSTID
   
   2)문자함수 - P 215
     CONCAT(S1,S2) : 두 문자열을 연결
@@ -25,11 +32,22 @@
     ASCII(C): 문자의 아스키 코드
     LENGTH(S): 대상 문자열의 BYTE 반환. 알파벳은 1BYTE, 한글은 3BYTE.
     CHAR_LENGTH(S) : 문자열의 길이
+
+    4-4 도서제목에 야구가 포함된 도서를 농구로 변경한 후 도서목록을 보이시오
+      Select bookid,REPLACE(bookname,"야구","농구")bookname,publisher,price
+      From book;
+
+    4-6 마당서점의 고객 중에서 같은 성을 가진 사람이 몇명이나 되는지 성별 인원수를 구하시오.
+      SELECT SUBSTR(NAME,1,1) '성', COUNT(*)'인원'
+      FROM Customer
+      Group By SUBSTR(name,1,1);
   
   3)날짜, 시간 함수 - P 218
     STR_TO_DATE -> 문자열(VARCHAR,CHAR) -> 날짜(DATE)
+      문자열 데이터를 날짜형으로 반환
     
     DATE_FORMAT -> 날짜(DATE,DATETIME) -> 문자열(특정 포멧으로)
+      날짜형 데이터를 문자열로 반환
       2021-09-16 -> 2021/09/16
     
     ADDDATE(date,interval) : 날짜에 지정된 기간만큼 더하거나 뺄때 
